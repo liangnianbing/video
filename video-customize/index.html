@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="#FE9345" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="format-detection" content="telphone=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>视屏播放页</title>
+    <!--初始化-->
+    <style>
+        video::-webkit-media-controls-enclosure {
+            /*禁用播放器控制栏的样式*/
+            display: none !important;
+        }
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+        body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+        td,th,caption { font-size:14px; }
+        h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
+        address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+        a { color:#000; text-decoration:none; }
+        a:hover { text-decoration:none; }
+        img { border:none; }
+        ol,ul,li { list-style:none; }
+        input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+        table { border-collapse:collapse; }
+        html {overflow-y: scroll;}
+
+        .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+        .clearfix { *zoom:1; }
+    </style>
+    <link rel="stylesheet" href="video.css">
+    <!--CDN-->
+    <!--JQ-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--在下面接着引入-->
+    <script src="video.js"></script>
+</head>
+<body>
+<!--功能需求：
+1.用原生HTML5完成一个视屏的播放页面;
+    要求：播放、暂停、快进（快捷键）、后退（快捷键）、拉动滚动条快进和后退、快捷键全屏播放;
+         快捷键退出全屏播放、声音控制（包含快捷键）;
+ 2.弹幕功能:
+        视屏页下方一个输入框，点击发送到视屏上层;
+            要求：分为三种，上半屏、全屏、下半屏、开启弹幕、关闭弹幕;
+        并且能讲发送文字展示在评论区（要有评论区）最多展示二十条，剩余滚动条下拉显示;
+ 3.剩余功能，有什么想到了再加吧;
+-->
+
+
+
+<!--模拟登陆状态条-->
+<div class="login-container">我是登陆条</div>
+<!--视屏容器-->
+<div class="video-bgcolor">
+    <div class="video-container">
+        <video id="myvideo" width="100%" controls poster="./img/07.jpg" src="./shiping/Vue.ogg">
+           您的浏览器不支持HTML5视屏元素，请更换您的浏览器，推荐您使用Chrome浏览器;
+        </video>
+        <!--视屏上的工具条-->
+        <div class="video-toolvar">
+            <div class="video-toolvar-left">
+                <div class="video-toolvar-left-bofang"></div>
+                <div class="video-toolvar-left-xiayige"></div>
+                <div class="video-toolvar-left-time">
+                    <span class="video-toolvar-left-time-span">获取中...</span>
+                </div>
+            </div>
+            <div class="video-toolvar-right">
+                <div class="video-toolvar-right-container">
+                    <div class="video-toolvar-right-speed">
+                        <ul class="video-toolvar-right-speed-ul-option">
+                            <li>2.0x</li>
+                            <li>1.75x</li>
+                            <li>1.5x</li>
+                            <li>1.25x</li>
+                            <li>1.0x</li>
+                        </ul>
+                        <span class="video-toolvar-right-speed-span">1.0x</span>
+                    </div>
+                    <div class="video-toolvar-right-Definition">
+                        <span class="video-toolvar-right-Definition-span">
+                            高清
+                        </span>
+                        <ul class="video-toolvar-right-Definition-span-option">
+                            <li>1080p</li>
+                            <li>720p</li>
+                            <li>高清</li>
+                            <li>流畅</li>
+                            <li>极速</li>
+                        </ul>
+                    </div>
+                    <div class="video-toolvar-right-volume" id="video-toolvar-right-volume">
+                        <div class="video-toolvar-right-volume-drop-down" id="video-toolvar-right-volume-drop-down">
+                            <input id="video-toolvar-right-volume-drop-down-bgStrip" type="range" max="100" min="0" value="100" step="1" class="video-toolvar-right-volume-drop-down-bgStrip">
+                        </div>
+                    </div>
+                    <div class="video-toolvar-right-enlarge"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--推荐视屏/弹幕评论----容器-->
+        <div class="recommendVideo-container">
+            <div class="recommendVideo-container-container">
+                <div class="recommendVideo-topFixed">
+                    <!--显示一个当前观看人数-->
+                    <div class="recommendVideo-audienceNumbei">
+                            <p class="recommendVideo-audienceNumbei-p">
+                                <span class="recommendVideo-audienceNumbei-people">1505</span>
+                                <span>人正在看，</span> <span class="recommendVideo-audienceNumbei-barrage"></span>
+                                <span>条弹幕</span>
+                            </p>
+                        </div>
+                    <!--推荐视屏/弹幕评论   标签页-->
+                    <div class="recommendVideo-tab">
+                        <span id="recommendVideo-tab-tuijian" class="recommendVideo-tab-click">推荐视屏</span>
+                        <span id="recommendVideo-tab-danmu">弹幕列表</span>
+                    </div>
+                </div>
+
+                <!--下面显示的标签页的详情-->
+                <div class="recommendVideo-tab-container">
+                    <ul class="recommendVideo-tab-list">
+
+                    </ul>
+                </div>
+                <div class="recommendVideo-tab1-container">
+                    <table class="recommendVideo-tab-list1">
+                        <thead>
+                            <tr>
+                                <td>用户</td>
+                                <td>内容</td>
+                                <td>时间</td>
+                            </tr>
+                        </thead>
+                        <tbody class="recommendVideo-tab-list1-tbody">
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--下方的分享点赞、弹幕发送框什么的-->
+        <div class="barrage-toolbar-container">
+
+            <div class="barrage-toolbar-left">
+                <div class="barrage-toolbar-switch">
+                    <div class="barrage-toolbar-switch-span">弹幕</div>
+                    <div class="barrage-toolbar-switch-btn">
+                        <div class="barrage-toolbar-switch-btn-control"></div>
+                    </div>
+                </div>
+                <div class="barrage-toolbar-left-setsize" id="barrage-toolbar-left-setsize">
+                    <span id="barrage-toolbar-left-setsize-shezhi">设置</span>
+                    <div class="barrage-toolbar-left-setsize-panel">
+                        <div class="barrage-toolbar-left-setsize-panel-div0 barrage-toolbar-left-setsize-panel-currency-border barrage-toolbar-left-setsize-panel-currency">
+                            <div class="barrage-toolbar-left-setsize-panel-div0-title">发送设置</div>
+                            <div class="barrage-toolbar-left-setsize-panel-div0-color">
+                                <ul>
+                                    <li id="fff" style="background-color:#fff;"></li>
+                                    <li id="f00" style="background-color:#f00;"></li>
+                                    <li id="ffa42a" style="background-color:#ffa42a;"></li><br/>
+                                    <li id="2eff1c" style="background-color:#2eff1c;"></li>
+                                    <li id="2effe6" style="background-color:#2effe6;"></li>
+                                    <li id="39f" style="background-color:#39f;"></li><br/>
+                                    <li id="be44ff" style="background-color:#be44ff;"></li>
+                                    <li id="9a8fff" style="background-color:#9a8fff;"></li>
+                                    <li id="ffed2c" style="background-color:#ffed2c;"></li><br/>
+                                    <li id="ff14dc" style="background-color:#ff14dc;"></li>
+                                    <li id="ffe199" style="background-color:#ffe199;"></li>
+                                    <li id="32ffa8" style="background-color:#32ffa8;"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="barrage-toolbar-left-setsize-panel-div1 barrage-toolbar-left-setsize-panel-currency">
+                            <div class="barrage-toolbar-left-setsize-panel-div0-title">播放设置</div>
+                            <div class="barrage-toolbar-left-setsize-panel-div1-set">
+                                <ul>
+                                    <li><img src="./img/danmubottom.png" alt=""></li>
+                                    <li><img src="./img/danmutop.png" alt=""></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="barrage-toolbar-left-input">
+                    <input name="tucao" id="tucao" class="barrage-toolbar-left-input-tucao" type="text" maxlength="10" placeholder="狠狠地吐槽吧！">
+                </div>
+            </div>
+
+
+
+            <div class="barrage-toolbar-right">
+                <div class="barrage-toolbar-right-container">
+                    <!--点赞,分享,收藏,下载-->
+                    <div class="barrage-toolbar-right-praise">点赞</div>
+                    <div class="barrage-toolbar-right-share">分享</div>
+                    <div class="barrage-toolbar-right-collection">收藏</div>
+                    <div class="barrage-toolbar-right-download">下载</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--暂停之后的广告-->
+        <div class="video-bgcolor-advertisement">
+            <!--左上角的广告标志-->
+            <div class="video-bgcolor-advertisement-prompt">广告</div>
+            <!--右上角的关闭叉叉标志-->
+            <div class="video-bgcolor-advertisement-close"></div>
+        </div>
+    </div>
+</div>
+<!--神评论-->
+<div class="god-comment-container">
+    <div class="god-comment-block">
+        <div class="god-comment"></div>
+    </div>
+</div>
+<!--评论显示区域-->
+<div class="new-comment-container">
+    <div class="new-comment-block">
+        <div class="new-comment"></div>
+    </div>
+</div>
+
+
+
+<!--切换清晰度的时候一个缓冲遮罩层-->
+<div class="toggle-resolution-mask">
+    <div class="toggle-resolution-mask-image"></div>
+</div>
+</body>
+<script>
+    var recommendVideo = function(data){
+        var recommendVideoTabList = document.getElementsByClassName('recommendVideo-tab-list')[0];
+
+        var _Route = [];
+        var _VideoTitle = [];
+        var _PlayVolume = [];
+        var _iconUrl = data.posterImgUrl.iconUrl;
+
+        //我试图封装，但是没有成功，有空再想想吧
+        for(urls in data.posterImgUrl.route){
+            _Route.push(data.posterImgUrl.route[urls]);
+        }
+        for(videoTitle in data.posterImgUrl.videoTitle){
+            _VideoTitle.push(data.posterImgUrl.videoTitle[videoTitle]);
+        }
+
+        for(playVolume in data.posterImgUrl.playVolume){
+            _PlayVolume.push(data.posterImgUrl.playVolume[playVolume]);
+        }
+
+        for(let i=0;i<_VideoTitle.length;i++){
+            let _li = document.createElement('li');
+            let _image = document.createElement('img');
+            let _span = document.createElement('span');
+            let _span_txt = document.createTextNode(_VideoTitle[i]);
+
+            _image.src = _Route[i];
+            _image.setAttribute('class','recommendVideo-tab-list-li-img');
+            _span.setAttribute('class','recommendVideo-tab-list-li-span');
+            _span.appendChild(_span_txt);
+
+
+            _li.appendChild(_image);
+            _li.appendChild(_span);
+            recommendVideoTabList.appendChild(_li);
+        }
+
+
+    }
+</script>
+<script>
+    var commentData = function(data){
+        var recommendVideoTabList1Tbody = document.getElementsByClassName('recommendVideo-tab-list1-tbody')[0];
+        var _metadata_username = data.userName.id;
+        var _metadata_content = data.userContent;
+
+        var _userDateTime = data.userDate.time;
+        var _userName = _metadata_username.split('，');
+        var _userContent = _metadata_content.split('，');
+
+        for(let i = 0;i<_userName.length;i++){
+            var _tr = document.createElement('tr');
+            var _td_name = document.createElement('td');
+            var _td_content = document.createElement('td');
+            var _td_time = document.createElement('td');
+            var _td_name_txt = document.createTextNode(_userName[i]);
+            var _td_content_txt = document.createTextNode(_userContent[i]);
+            var _td_time_txt = document.createTextNode(_userDateTime);
+
+            _td_name.appendChild(_td_name_txt);
+            _td_name.setAttribute('class','recommendVideo-tab-list1-tbody-tr-td');
+            _td_content.appendChild(_td_content_txt);
+            _td_time.appendChild(_td_time_txt);
+            _tr.appendChild(_td_name);
+            _tr.appendChild(_td_content);
+            _tr.appendChild(_td_time);
+            recommendVideoTabList1Tbody.appendChild(_tr);
+
+        }
+    }
+</script>
+
+<script src="./json/RecommendVideo.js"></script>
+<script src="./json/commentData.js"></script>
+</html>

@@ -1,0 +1,701 @@
+
+.login-container{
+  width:100%;
+  height:45px;
+  background:linear-gradient(#222,#191919);
+  position: relative;
+  top:0;
+  box-shadow: 1px 1px 5px #101010;
+  z-index:100;
+  border-bottom:1px solid #202020;
+  font-size:20px;
+  color:#fff;
+  text-align: center;
+  line-height: 45px;
+  font-family: "楷体";
+}
+.video-bgcolor{
+  width:100%;
+  background-color: #292929;
+  position: relative;
+  padding-top:10px;
+  padding-bottom:15px;
+}
+.video-container{
+  width:85%;
+  height:600px;
+  background-color: #1f1f1f;
+  margin:0 auto;
+  position: relative;
+  video{
+    width:75%;
+    height:540px;
+  }
+}
+.video-toolvar{
+  width:75%;
+  height:50px;
+  background:rgba(0,0,0,0.5);
+  position:absolute;
+  left:0;
+  top:490px;
+
+  div{
+    display: inline-block;
+    vertical-align: top;
+    font-size:0;
+  }
+}
+.video-toolvar-left,.video-toolvar-right{
+  width:48%;
+  height:50px;
+  position: relative;
+}
+.video-toolvar-left-bofang,.video-toolvar-left-xiayige{
+  width:60px;
+  height:50px;
+  background: url("./img/bofang.png") center no-repeat;
+  background-size: 25px 25px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+.video-toolvar-left-xiayige{
+  background: url("./img/xiayige.png") center no-repeat;
+  background-size: 25px 25px;
+}
+.video-toolvar-left-time{
+  width:150px;
+  height:50px;
+  text-align: center;
+  line-height: 50px;
+  span{
+    font-size:16px;
+    color:#fff;
+
+  }
+}
+.video-toolvar-right{
+  position: relative;
+}
+.video-toolvar-right-container{
+  position: absolute;
+  top:0;
+  right:-40px;
+  div{
+    width:80px;
+    height:50px;
+    line-height: 50px;
+    color:#f00;
+    font-size:16px!important;
+    text-align: center;
+    line-height: 50px;
+    position: relative;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    &:hover{
+      cursor: pointer;
+      background-size: 32px 32px;
+    }
+  }
+
+}
+.video-toolvar-right-speed{
+  span{
+    color:#000;
+    border-radius: 5px;
+    padding: 2px 8px;
+    background-color: #93999f;
+    position: relative;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    &:hover{
+      background-color: #39f;
+      color: #ececec;
+    }
+  }
+}
+.video-toolvar-right-speed-ul-option{
+  width:105px;
+  height:150px;
+  display:none;
+  background-color:rgba(0,0,0,0.8);
+  position: absolute;
+  top:-150px;
+  left:-15px;
+  li{
+    width:100%;
+    height:30px;
+    color: #aaa;
+    line-height: 30px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+}
+.video-toolvar-right-Definition{
+  span{
+    color:#aaa;
+    padding: 2px 8px;
+    border-radius: 3px;
+    position: relative;
+  }
+}
+.video-toolvar-right-Definition-span-option{
+  width:105px;
+  height:150px;
+  background-color:rgba(0,0,0,0.8);
+  position: absolute;
+  top:-150px;
+  left:-15px;
+  display:none;
+  li{
+    width:100%;
+    height:30px;
+    color: #d7d7d7;
+    line-height: 30px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+
+}
+.video-toolvar-right-volume{
+  background: url("./img/shengyin.png")center no-repeat;
+  background-size: 25px 25px;
+  position: relative;
+}
+.video-toolvar-right-volume-drop-down{
+  width:120px!important;
+  height:25px!important;
+  position: absolute;
+  top:-72px;
+  right:20px;
+  background: rgba(0,0,0,0);
+  padding-top:20px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  input{
+    position:relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    display:none;
+    bottom:0;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 120px;
+    border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height:6px;
+    border-radius: 10px; /*将轨道设为圆角的*/
+    background-color: #39f;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #ffffff;
+    border-radius: 50%; /*外观设置为圆形*/
+    border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+  }
+}
+.video-toolvar-right-enlarge{
+  background: url("./img/quanping.png")center no-repeat;
+  background-size: 20px 20px;
+
+}
+//暂停以后的广告
+.video-bgcolor-advertisement{
+  width:350px;
+  height:200px;
+  background-color: #f00;
+  position: absolute;
+  top:20%;
+  left:26%;
+  background: url(./img/guangao.gif)center no-repeat;
+  background-size: 350px 200px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+//广告标志
+.video-bgcolor-advertisement-prompt{
+  width:30px;
+  height:20px;
+  background-color: #000;
+  position: relative;
+  top:0;
+  left:0;
+  color: #fff;
+}
+//关闭广告的叉叉
+.video-bgcolor-advertisement-close{
+  width:20px;
+  height:20px;
+  position: absolute;
+  top:0;
+  right:0;
+  background:url("./img/guanbi.png") center no-repeat;
+  background-size: 20px 20px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+//切换清晰度的时候一个缓冲遮罩层
+.toggle-resolution-mask{
+  width:100%;
+  position: fixed;
+  top:0px;
+  left:0px;
+  z-index:9999;
+  background-color: rgba(0,0,0,0.5);
+  display:none;
+}
+.toggle-resolution-mask-image{
+  width:200px;
+  height:200px;
+  margin-left:38%;
+  margin-top:10%;
+  background: url(./img/jiazai.gif) center no-repeat;
+}
+//-------------------------分----------割----------线----------------------------------------------------------
+//------------------------以上的H5中video的相关样式全部完毕------------------------------------------------------
+
+
+
+//推荐视屏/弹幕评论
+.recommendVideo-container{
+  width:22%;
+  height:540px;
+  border:1px solid #fff;
+  position: absolute;
+  top:0;
+  right:0;
+  overflow: hidden;
+}
+.recommendVideo-container-container{
+  width:100%;
+  position: relative;
+  top:0px;
+  height:0px;
+}
+.recommendVideo-topFixed{
+  width:100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+}
+//一个显示当前观看人数的div
+.recommendVideo-audienceNumbei{
+  width:100%;
+  height:60px !important;
+  background-color: #fff;
+  border-bottom:1px solid #E2E2E2;
+  text-align: center;
+  line-height: 60px;
+  span{
+    color:#99A2AA;
+  }
+}
+.recommendVideo-audienceNumbei-people{
+  color: #000000 !important;
+  font-size:24px;
+
+}
+
+//一个切换弹幕评论和推荐视屏的标签页
+.recommendVideo-tab{
+  width:100%;
+  height:32px;
+  background-color: #fff;
+  color: #0b0b0b;
+  span{
+    font-size:16px;
+    width:40%;
+    height: 32px;
+    text-align: right;
+    line-height: 32px;
+    color:#000;
+    margin-left:20%;
+    padding-bottom:5px;
+
+    &:hover{
+      color: #39f;
+      cursor: pointer;
+    }
+  }
+}
+.recommendVideo-tab-click{
+  border-bottom:3px solid #39f;
+  color: #3399ff !important;
+
+}
+.recommendVideo-tab-container{
+  width:100%;
+  height:446px;
+  background-color: #fff;
+  position: absolute;
+  top:93px;
+  border-top:1px solid #E2E2E2;
+  overflow-Y:scroll;
+  z-index:2;
+}
+//推荐和弹幕列表
+.recommendVideo-tab-list{
+  width:100%;
+  li{
+    width:95%;
+    height:60px;
+    margin:0 auto;
+    border-bottom:1px solid #d5d5d5;
+  }
+}
+//span的样式
+.recommendVideo-tab-list-li-span{
+  width:60%;
+  height:60px;
+  font-size:12px;
+  display:inline-block;
+  vertical-align: top;
+  padding-left:10px;
+  &:hover{
+    color: #39f;
+    cursor: pointer;
+  }
+}
+//img的样式
+.recommendVideo-tab-list-li-img{
+  width:35%;
+  height:60px;
+  display:inline-block;
+  vertical-align: top;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+
+
+
+.recommendVideo-tab1-container{
+  width:100%;
+  height:446px;
+  background-color: #fff;
+  position: absolute;
+  top:93px;
+  border-top:1px solid #E2E2E2;
+  overflow-Y:scroll;
+  z-index:1;
+}
+.recommendVideo-tab-list1{
+  width:100%;
+  thead{
+    tr{
+      text-align: center;
+      line-height: 30px;
+      border-bottom:1px solid #c0c0c0;
+    }
+  }
+}
+.recommendVideo-tab-list1-tbody{
+  tr{
+    line-height: 30px!important;
+
+    td{
+      font-size: 12px !important;
+      color:#99A2AA;
+      &:hover{
+        cursor: pointer;
+        color: #39f !important;
+      }
+    }
+  }
+}
+.recommendVideo-tab-list1-tbody-tr-td{
+  color: #00a1d6 !important;
+}
+
+
+
+
+
+
+
+//包含弹幕、点赞等的工具条
+.barrage-toolbar-container{
+  width:100%;
+  height:50px;
+  position: absolute;
+  bottom:0;
+  background-color: #1f1f1f;
+  font-size:0;
+}
+
+
+//工具条左边
+.barrage-toolbar-left{
+  width:50%;
+  height:100%;
+  display:inline-block;
+  vertical-align: top;
+  font-size:0;
+}
+.barrage-toolbar-switch{
+  width:120px;
+  height:100%;
+  font-size:0;
+  display:inline-block;
+  vertical-align: top;
+}
+.barrage-toolbar-switch-span{
+  width:50px;
+  height:100%;
+  font-size:16px;
+  text-align: left;
+  line-height: 50px;
+  color:#999;
+  padding-left:20px;
+  display:inline-block;
+  vertical-align: top;
+}
+.barrage-toolbar-switch-btn{
+  width:50px;
+  height:25px;
+  font-size:16px;
+  position: relative;
+  top:25%;
+  background-color: #449f1c;
+  display:inline-block;
+  vertical-align: top;
+  border-radius: 15px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.barrage-toolbar-switch-btn-control{
+  width:25px;
+  height:25px;
+  background-color: #525252;
+  border-radius: 50%;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  top:0;
+  left:0;
+  &:hover{
+    cursor: pointer;
+  }
+}
+.barrage-toolbar-left-setsize,.barrage-toolbar-left-input{
+  width:45px;
+  height:35px;
+  background-color: #444;
+  border-radius: 5px;
+  display:inline-block;
+  vertical-align: top;
+  margin-left:10px;
+  position: relative;
+  top:12%;
+  font-size:16px;
+  text-align: center;
+  line-height: 34px;
+  color:#999;
+  &:hover{
+    cursor: pointer;
+    color:#449f1c;
+  }
+}
+.barrage-toolbar-left-setsize-panel{
+  width:450px;
+  height:210px;
+  background-color: rgba(0,0,0,0.8);
+  position: absolute;
+  bottom:45px;
+  left:-120px;
+  font-size:0;
+  display:none;
+}
+.barrage-toolbar-left-setsize-panel-currency{
+  width:200px;
+  height:210px;
+  display:inline-block;
+  vertical-align:top;
+}
+.barrage-toolbar-left-setsize-panel-div0-title{
+  width:180px;
+  height:30px;
+  font-size:18px;
+  color:#fff;
+  line-height: 30px;
+}
+.barrage-toolbar-left-setsize-panel-currency-border{
+  border-right:1px solid #93999f;
+}
+.barrage-toolbar-left-setsize-panel:after{
+  content:'';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(0,0,0,0.5);
+  position: absolute;
+  bottom:-10px;
+  left:130px;
+}
+.barrage-toolbar-left-setsize-panel-div0-color{
+  ul{
+    font-size:0;
+    margin:20px auto;
+    li{
+      width:20px;
+      height:20px;
+      display:inline-block;
+      vertical-align: top;
+      border-radius: 50%;
+      margin-right:20px;
+    }
+  }
+}
+.barrage-toolbar-left-setsize-panel-div1-set{
+  ul{
+    font-size:0;
+    margin:20px auto;
+    li{
+      width:150px;
+      height:60px;
+      margin-left:30px;
+    }
+  }
+}
+.barrage-toolbar-left-input{
+  width:300px;
+  background-color: #39f;
+  margin-left:15px;
+  &:hover{
+    color:#fff;
+  }
+}
+.barrage-toolbar-left-input:after{
+  content:'发送';
+  width:70px;
+  height:35px;
+  position: absolute;
+  top:0px;
+  right:0px;
+  background-color: #353535;
+}
+.barrage-toolbar-left-input-tucao{
+  width:220px;
+  height:31px;
+  outline:none;
+  padding-left:10px;
+  position: absolute;
+  top:0px;
+  left:0px;
+  background-color: #252528;
+  border:2px solid #252528;
+  color:#fff;
+}
+
+
+
+
+//工具条右边
+.barrage-toolbar-right{
+  width:50%;
+  height:100%;
+  background-color: #ffdfcc;
+  display:inline-block;
+  vertical-align: top;
+  font-size:0px;
+}
+.barrage-toolbar-right-container{
+  width:480px;
+  height:100%;
+  float:right;
+}
+.barrage-toolbar-right-praise,.barrage-toolbar-right-share,.barrage-toolbar-right-collection,.barrage-toolbar-right-download{
+  width:120px;
+  height:100%;
+  float: left;
+  background-color: #449f1c;
+  font-size:16px;
+  text-align: center;
+  line-height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//s神评论
+.god-comment-container{
+  width:100%;
+  height:300px;
+  border:1px solid;
+}
+.god-comment-block,.new-comment-block{
+  width:85%;
+  height:100%;
+  margin:0 auto;
+  border:1px solid;
+  position: relative;
+}
+.god-comment,.new-comment{
+  width:75%;
+  height:100%;
+  position: absolute;
+  left:0;
+  border:1px solid #39f;
+}
+
+//评论显示区域
+.new-comment-container{
+  width:100%;
+  height:800px;
+  border:1px solid;
+}
+
+
+
+
