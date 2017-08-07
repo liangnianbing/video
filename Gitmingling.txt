@@ -1,0 +1,62 @@
+https://github.com/liangnianbing/rocket.git   **这是我的仓库地址
+
+echo“＃rocket”>> README.md 
+git init 
+git add README.md 
+git commit -m“first commit” 
+git remote add origin https://github.com/liangnianbing/rocket.git
+ git push -u origin master
+
+
+**上面这些命令是向远程仓库推文件的流程
+
+
+//一些git命令的意思：
+
+$ git status :这个命令的意思是，查看当前仓库的所有文件
+
+$ git add -A :这个命令的意思是，提交/增加所有文件到远程仓库中
+
+$ git commit -m '例如这里写：我的第一次提交' :这个命令的意思是，告诉仓库这个文件是干什么的
+
+git config --global user.email '这里写注册git的邮箱'
+
+git config --global user.name '这里写git的用户名'
+
+git remote add origin https://github.com/liangnianbing/rocket.git 这个命令是告诉git命令行，这个是我要提交文件到哪儿的仓库地址；
+
+$ git push -u origin master :这个命令是每次要提交都需要写的，写在最后一行，当上面的命令都做完了，在写着一行，这行写完回车执行，意味着此次提交代码完成！！！
+
+/*************上面是上传文件到GIT仓库*****************/
+
+/////////////////////////////////////////////////////////////////////////////////
+
+从别人或者自己的仓库中clone代码：
+
+$ git clone 从这里是需要克隆的地址
+
+
+ --args --disable-web-security  //让浏览器允许跨域访问
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
