@@ -30,6 +30,7 @@
 
         .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
         .clearfix { *zoom:1; }
+        textarea{  resize:none;  outline:none;  }
     </style>
     <link rel="stylesheet" href="video.css">
     <!--CDN-->
@@ -204,18 +205,25 @@
             <div class="barrage-toolbar-right">
                 <div class="barrage-toolbar-right-container">
                     <!--点赞,分享,收藏,下载-->
-                    <div class="barrage-toolbar-right-praise">点赞</div>
-                    <div class="barrage-toolbar-right-share">分享</div>
-                    <div class="barrage-toolbar-right-collection">收藏</div>
-                    <div class="barrage-toolbar-right-download">下载</div>
+                    <div class="barrage-toolbar-right-praise">
+                        <span class="barrage-toolbar-right-praise-img"></span>
+                        <span class="barrage-toolbar-right-praise-span">1120</span>
+                    </div>
+                    <div class="barrage-toolbar-right-share">
+                        <span class="barrage-toolbar-right-share-img"></span>
+                        <span class="barrage-toolbar-right-share-span">分享</span>
+                    </div>
+                    <div class="barrage-toolbar-right-collection">
+                        <span class="barrage-toolbar-right-collection-img"></span>
+                        <span class="barrage-toolbar-right-collection-span">收藏</span>
+                    </div>
+                    <div class="barrage-toolbar-right-download">
+                        <span class="barrage-toolbar-right-download-img"></span>
+                        <span class="barrage-toolbar-right-download-span">下载</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
         <!--暂停之后的广告-->
         <div class="video-bgcolor-advertisement">
             <!--左上角的广告标志-->
@@ -225,25 +233,149 @@
         </div>
     </div>
 </div>
-<!--神评论-->
+
+
+
+
+
+<!--发表评论   表单-->
 <div class="god-comment-container">
     <div class="god-comment-block">
-        <div class="god-comment"></div>
+        <div class="god-comment">
+            <div class="god-comment-user">
+                <span class="god-comment-user-span0">编辑评论</span>
+                <span class="god-comment-user-span1">文明上网理性发言，请遵守<a target="_blank" href="http://www.qq.com/coral/coralBeta2/coralinfo.htm">新闻评论服务协议</a></span>
+            </div>
+            <div class="god-comment-input" title="等啥呢？等菜呢？还不赶紧写下你的千古绝论！！！">
+                <textarea maxlength="140" name="commentInt" id="commentInt" class="god-comment-input-commentInt" placeholder="我来说两句..."></textarea>
+                <div class="god-comment-input-text">还可以输入<span class="god-comment-input-text-span">140</span>字</div>
+            </div>
+            <div class="god-comment-btn">
+                <div class="god-comment-btn-err"></div>
+                <div class="god-comment-btn-text" title="让他们看看，我说的就是真理，哼~~">发给他们看看</div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
 <!--评论显示区域-->
 <div class="new-comment-container">
     <div class="new-comment-block">
-        <div class="new-comment"></div>
+        <div class="new-comment">
+            <div class="new-comment-title"><span>全部评论</span></div>
+            <ul class="new-comment-ul">
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">你可爱就行了 🌚</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            看了这么多评论，我个人觉得无论男人还是女人要想抓住对方的心，就必须学会取舍，要懂得爱自己，如果因为他人的一句甜言蜜语就迷失了自我，那就只能说是太蠢了。要记住，是自己的躲都躲不掉，不用想太多，顺其自然的去处理，处理完后，就无需再介怀了？最后说一句，无论男人还是女人都要做到经济独立。要知道一句话说得好，看别人不如靠自己。只有自己双手拼来的东西才是真属于自己的东西。呼吁依靠过于他人的家庭主妇或是家庭煮夫。都要自立自强。要学会做自己的王和女王。总而言之，无论男人还是女人一旦离婚，就要断的亲亲楚楚，不要在以后干涉对方的任何生活。千万不要以孩子为借口。所以，再次呼吁。希望大家都能成功。幸福。不看任何，只看自己。
+                        </div>
+                    </div>
+                </li>
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">极限</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            为什么抛弃那么漂亮的老婆找那么丑的小三？因为漂亮老婆脾气大却不会耍心计，所以迟早被别人算计。那小三虽然丑表面却很温柔很会耍手段，男人会被这样的女人耍弄死都不知道是咋死的。
+                        </div>
+                    </div>
+                </li>
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">④Ⅲㄝ六ㄜ道</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            看这部剧，说一个我身边真实的事情吧，那时候还住在上海老弄堂里面，隔壁阿姨和我第一次见其实我觉得她脾气很大，不过也是我当时比较熊孩子冒犯了人家在先。后来相处人家很热情，也对人很好，我妈上班我遇到特殊情况也会关照我。家庭主妇，每天想着花样做好吃的给老公孩子吃，有一次看到我还给我吃过，确实有着不错的手艺。比我妈大但是保养得比我妈好一点，属于上得厅堂下得厨房的人。我妈曾经劝说她还年轻，才四十，应该去稍微找点工作，她说不用，老公会养她的。
+                            <br/><br/>
+                            可是等到感情淡了，她老公开始嫌弃她只会吃用家里的，每次吵架都说你还不是吃我的用我的，可是那时候她已经快五十了。后来他们离婚的第三天，带进来一个和她差不多大的中年妇女，脸上的细纹比她多看着还有点微胖，而且不愿意单纯做家庭主妇，外面有着自己的工作，有好几次看到是男的在做饭。感觉这一点和电视剧有着惊人的相似，如果不是小三怎么会离婚第三天就带进来？我记得当时她和那位女的吵架整个弄堂都看着。后来就偶然在校门口遇到过她一次，现在是怎样的情况，没有人知道了。
+                            <br/><br/>
+                            所以，实打实的做家庭主妇，老公养一辈子之类的，只有小说电视才有，女人不能没有自己的事情。
+                        </div>
+                    </div>
+                </li>
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">傻女孩</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            这凌玲，他妈的太装B了，人家有家庭，偏要拆散人家幸福的家庭，凌玲也不想想子君有儿子，如果没了爸爸，就变成单身家庭，你也有儿子，但有自己的老公啊，为什么要离婚，现在离婚很好玩吗？这陈俊生那么喜欢搞小三，那为什么不去对你妈这样，这部戏里我是最讨厌最会装虚伪的人就是陈三八（陈俊生）和凌小三（凌玲）😡😡😡😡😡
+                        </div>
+                    </div>
+                </li>
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">see you</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            所以啊 女人连自己的孩子都不能照顾了 生完孩子赶紧去上班赚钱 不赚钱婆家一个个给你脸色，让那些精明能干的女人再把老公勾引走，不上班没有足够的自己的经济 有时候填个衣服给娘家买点东西都要卑微的跟他们请求，其实他们根本不知道带孩子比上班累多了。。
+                        </div>
+                    </div>
+                </li>
+                <li class="new-comment-li">
+                    <div class="new-comment-li-leftHead">
+                        <img src="./img/touxiang.jpg" alt="">
+                    </div>
+                    <div class="new-comment-li-content">
+                        <div class="new-comment-li-content-name">
+                            <span class="new-comment-li-content-name-text">骑猪去兜风</span><span class="new-comment-li-content-name-time">2017/7/28</span>
+                        </div>
+                        <div class="new-comment-li-content-txt">
+                            女人无论到什么时候都要有自己的一份事做，要活出自我，而不是为谁活围着谁过，不然真就成了一个寄生虫了！
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
 
 
+
+<!--全局元素-->
 <!--切换清晰度的时候一个缓冲遮罩层-->
 <div class="toggle-resolution-mask">
     <div class="toggle-resolution-mask-image"></div>
 </div>
+
+<!--当滑动之后，视屏加载到右下角-->
+<div class="global-video-container">
+    <video id="myvideo2" src="./shiping/Vue.ogg">
+
+    </video>
+</div>
+
+
+<!--返回顶部-->
+<div class="scroll-top">
+
+</div>
+
 </body>
 <script>
     var recommendVideo = function(data){

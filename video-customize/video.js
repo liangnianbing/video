@@ -296,7 +296,6 @@ $(function(){
 
     })();
 
-
     //右侧的推荐视屏和弹幕列表
     (function(){
         //视屏列表的两个选项，点击事件
@@ -330,8 +329,6 @@ $(function(){
         var commentNumber = $('.recommendVideo-tab-list1-tbody tr');
         $('.recommendVideo-audienceNumbei-barrage').text(commentNumber.length);
     })();
-
-
 
     (function(){
         //起名太难了，我还是用拼音吧
@@ -383,7 +380,217 @@ $(function(){
         });
 
 
+        //setImgAndColor();参数1：父元素，参数2：原本的图片名称，参数3：hover要替换的文件名称
+        function setImgAndColor(parentClass,img,imghover){
+            $('.' + parentClass).mouseover(function(){
+                $('.' + parentClass).css({
+                    'backgroundImage':'url(./img/' + imghover + ')',
+                    'background-size':'25px 25px'
+                });
+            });
+
+            $('.' + parentClass).mouseout(function(){
+                $('.' + parentClass).css({
+                    'backgroundImage':'url(./img/' + img + ')',
+                    'background-size':'25px 25px'
+                });
+            });
+        }
+        setImgAndColor('barrage-toolbar-right-praise-img','clickdianzan.png','clickdianzanhover.png');
+        setImgAndColor('barrage-toolbar-right-share-img','clickfenxiang.png','clickfenxianghover.png');
+        setImgAndColor('barrage-toolbar-right-collection-img','clickshoucang.png','clickshoucanghover.png');
+        setImgAndColor('barrage-toolbar-right-download-img','clickxiazai.png','clickxiazaihover.png');
+        //点赞分享等hover
+        $('.barrage-toolbar-right-praise-img').on({
+            'click':function(){
+                var _num = parseInt($('.barrage-toolbar-right-praise-span').text());
+                if(_num >= 1140){
+                    alert("^_^，不要再点伦家啦~~，你已经赞过很多次了哦~~");
+                }else{
+                    $('.barrage-toolbar-right-praise-span').text(_num + 1);
+                    $('.barrage-toolbar-right-praise-span').css({
+                        'color':'#2eff1c'
+                    });
+                }
+
+            }
+        });
+
+        //下载
+        $('.barrage-toolbar-right-download').on('click',function(ev){
+            window.location.href = './shiping/Vue.zip'
+        });
+        $('.barrage-toolbar-right-collection').on('click',function(ev){
+            alert('由于浏览器限制，您想添加到收藏夹必须由您手动添加\n\n【快捷键：Ctrl + D】\n\n 快速添加到收藏夹！');
+        });
+        $('.barrage-toolbar-right-share').on('click',function(){
+            window.open('http://weibo.com/u/6006680328/home');
+        });
     })();
+
+    //    监听滚动条的高度，超出一定的范围，将在右下角出现一个视屏的播放，小的；
+    var myvideo2 = document.getElementById('myvideo2');
+    var myvideo2switch = true;
+    myvideo2.onclick = function(){
+        if(myvideo2switch){
+            myvideo2.play();
+            myvideo2switch = false;
+        }else{
+            myvideo2.pause();
+            myvideo2switch = true;
+        }
+    }
+
+    $(document).on({
+        'scroll':function(){
+            var _scrollTop = $(document).scrollTop();
+            if(_scrollTop > 600){
+                $('.global-video-container').css({
+                    'display':'block'
+                });
+                $('.scroll-top').css({
+                    'display':'block'
+                });
+                myvideo2.play();
+                myvideo2switch = false;
+            }else{
+                $('.global-video-container').css({
+                    'display':'none'
+                });
+                $('.scroll-top').css({
+                    'display':'none'
+                });
+                myvideo2.pause();
+                myvideo2switch = true;
+            }
+        }
+    });
+
+
+    //评论框内容改变统计字数
+    $('.god-comment-input-commentInt').on({
+        'input':function(){
+            $('.god-comment-input-text-span').text(140 - $('.god-comment-input-commentInt').val().length);
+        },
+        'focus':function(){
+            $('.god-comment-input-commentInt').css({
+                'border':'1px solid #39f'
+            });
+            $('.god-comment-btn-err').text('');
+        },
+        'blur':function(){
+            $('.god-comment-input-commentInt').css({
+                'border':'1px solid #c0c0c0'
+            });
+        }
+    });
+
+    //发送按钮按下和弹起事件
+    $('.god-comment-btn-text').on({
+        'mousedown':function(){
+            $('.god-comment-btn-text').css({
+                'background-color':'#c0c0c0'
+            });
+        },
+        'mouseup':function(){
+            $('.god-comment-btn-text').css({
+                'background-color':'#39f'
+            });
+        },
+        'click':function(){
+            //最终要追加到ul下
+            var  _new_comment_ul = document.getElementsByClassName('new-comment-ul')[0];
+            //得到用户输入的值
+            var  commentInt = $('#commentInt').val();
+            //创建所有的元素和属性
+
+            if(commentInt == ''){
+                $('.god-comment-input-commentInt').css({
+                    'border':'1px solid #f00'
+                });
+                $('.god-comment-btn-err').text('你还没有输入内容，不能发送哦...');
+            }else{
+                var _li = document.createElement('li');
+                _li.setAttribute('class','new-comment-li');
+                var _div_head = document.createElement('div');
+                _div_head.setAttribute('class','new-comment-li-leftHead');
+                var _div_head_img = document.createElement('img');
+                _div_head_img.src = './img/zhouxingchi.jpg';
+
+
+
+                var _div_content = document.createElement('div');
+                _div_content.setAttribute('class','new-comment-li-content');
+
+                var _div_content_name = document.createElement('div');
+                _div_content_name.setAttribute('class','new-comment-li-content-name');
+
+                var _div_content_name_txt = document.createElement('span');
+                var _div_content_name_txt_wenben = document.createTextNode('起个名真难！');
+                _div_content_name_txt.setAttribute('class','new-comment-li-content-name-text');
+                _div_content_name_txt.appendChild(_div_content_name_txt_wenben);
+                var _div_content_name_time = document.createElement('span');
+                var _div_content_name_time_wenben = document.createTextNode('2017/8/9');
+                _div_content_name_time.setAttribute('class','new-comment-li-content-name-time');
+                _div_content_name_time.appendChild(_div_content_name_time_wenben);
+
+
+                var _div_content_txt = document.createElement('div');
+                var _div_content_txt_wenben = document.createTextNode(commentInt);
+                _div_content_txt.setAttribute('class','new-comment-li-content-txt');
+                _div_content_txt.appendChild(_div_content_txt_wenben);
+
+
+                //开始追加元素
+                _div_head.appendChild(_div_head_img);
+
+                _div_content.appendChild(_div_content_name);
+                _div_content.appendChild(_div_content_txt);
+
+                _div_content_name.appendChild(_div_content_name_txt);
+                _div_content_name.appendChild(_div_content_name_time);
+
+                _li.appendChild(_div_head);
+                _li.appendChild(_div_content);
+
+                _new_comment_ul.appendChild(_li);
+                $('#commentInt').val('');
+                $('.god-comment-input-text-span').text(140);
+            }
+        }
+    });
+
+
+    //返回顶部
+    var scrollToptime = null;
+    $('.scroll-top').on({
+        'mouseover':function(){
+            $('.scroll-top').css({
+                'background-Image':'url(./img/scrollTophover.png)'
+            });
+        },
+        'mouseout':function(){
+            $('.scroll-top').css({
+                'background-Image':'url(./img/scrollTop.png)'
+            });
+        },
+        'click':function(){
+            var _scroll_Top = $(document).scrollTop();
+            scrollToptime = setInterval(function(){
+                if(_scroll_Top <= 0){
+                    clearInterval(scrollToptime);
+                }else{
+                    $(document).scrollTop(_scroll_Top - 20);
+                    _scroll_Top -= 150;
+                }
+            },30)
+        }
+    });
+
+
+
+
+
 
 
 

@@ -261,6 +261,22 @@
   margin-top: 10%;
   background: url(./img/jiazai.gif) center no-repeat; }
 
+.global-video-container {
+  width: 420px;
+  height: 240px;
+  border: 3px solid #e2e2e2;
+  background-color: #fff;
+  position: fixed;
+  bottom: 20px;
+  right: 8%;
+  display: none; }
+  .global-video-container video {
+    width: 420px;
+    height: 240px;
+    position: relative; }
+    .global-video-container video:hover {
+      cursor: pointer; }
+
 .recommendVideo-container {
   width: 22%;
   height: 540px;
@@ -554,7 +570,6 @@
 .barrage-toolbar-right {
   width: 50%;
   height: 100%;
-  background-color: #ffdfcc;
   display: inline-block;
   vertical-align: top;
   font-size: 0px; }
@@ -568,33 +583,219 @@
   width: 120px;
   height: 100%;
   float: left;
-  background-color: #449f1c;
   font-size: 16px;
   text-align: center;
   line-height: 50px; }
+  .barrage-toolbar-right-praise span, .barrage-toolbar-right-share span, .barrage-toolbar-right-collection span, .barrage-toolbar-right-download span {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
+    .barrage-toolbar-right-praise span:hover, .barrage-toolbar-right-share span:hover, .barrage-toolbar-right-collection span:hover, .barrage-toolbar-right-download span:hover {
+      color: #2eff1c;
+      cursor: pointer; }
+  .barrage-toolbar-right-praise .barrage-toolbar-right-praise-img, .barrage-toolbar-right-praise .barrage-toolbar-right-share-img, .barrage-toolbar-right-praise .barrage-toolbar-right-collection-img, .barrage-toolbar-right-praise .barrage-toolbar-right-download-img, .barrage-toolbar-right-share .barrage-toolbar-right-praise-img, .barrage-toolbar-right-share .barrage-toolbar-right-share-img, .barrage-toolbar-right-share .barrage-toolbar-right-collection-img, .barrage-toolbar-right-share .barrage-toolbar-right-download-img, .barrage-toolbar-right-collection .barrage-toolbar-right-praise-img, .barrage-toolbar-right-collection .barrage-toolbar-right-share-img, .barrage-toolbar-right-collection .barrage-toolbar-right-collection-img, .barrage-toolbar-right-collection .barrage-toolbar-right-download-img, .barrage-toolbar-right-download .barrage-toolbar-right-praise-img, .barrage-toolbar-right-download .barrage-toolbar-right-share-img, .barrage-toolbar-right-download .barrage-toolbar-right-collection-img, .barrage-toolbar-right-download .barrage-toolbar-right-download-img {
+    width: 25px;
+    height: 90%;
+    background-size: 25px 25px; }
+
+.barrage-toolbar-right-praise-img {
+  background: url("./img/clickdianzan.png") center no-repeat; }
+
+.barrage-toolbar-right-share-img {
+  background: url("./img/clickfenxiang.png") center no-repeat; }
+
+.barrage-toolbar-right-collection-img {
+  background: url("./img/clickshoucang.png") center no-repeat; }
+
+.barrage-toolbar-right-download-img {
+  background: url("./img/clickxiazai.png") center no-repeat; }
 
 .god-comment-container {
   width: 100%;
-  height: 300px;
-  border: 1px solid; }
+  height: 300px; }
 
-.god-comment-block, .new-comment-block {
+.god-comment-block {
   width: 85%;
   height: 100%;
   margin: 0 auto;
-  border: 1px solid;
   position: relative; }
 
-.god-comment, .new-comment {
+.god-comment {
   width: 75%;
   height: 100%;
   position: absolute;
-  left: 0;
-  border: 1px solid #39f; }
+  left: 0; }
+
+.god-comment-user {
+  width: 100%;
+  height: 50px;
+  position: relative; }
+
+.god-comment-user-span0 {
+  width: 80px;
+  display: block;
+  font-size: 20px;
+  font-family: "微软雅黑";
+  position: absolute;
+  bottom: 2px;
+  left: 10px; }
+
+.god-comment-user-span1 {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 110px;
+  color: #cccccc; }
+  .god-comment-user-span1 a {
+    color: #cccccc; }
+    .god-comment-user-span1 a:hover {
+      color: #df7070; }
+
+.god-comment-input {
+  width: 100%;
+  height: 190px;
+  position: relative; }
+  .god-comment-input textarea {
+    width: 98%;
+    height: 150px;
+    border: 1px solid #c0c0c0;
+    color: #919191;
+    margin-top: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
+
+.god-comment-input-text {
+  width: 150px;
+  height: 20px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px; }
+
+.god-comment-btn {
+  width: 100%;
+  height: 50px;
+  position: relative; }
+
+.god-comment-btn-text {
+  width: 120px;
+  height: 50px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  background-color: #3399ff;
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  border-radius: 5px; }
+  .god-comment-btn-text:hover {
+    cursor: pointer; }
+
+.god-comment-btn-err {
+  width: 260px;
+  height: 20px;
+  font-size: 16px;
+  color: #f00;
+  text-align: left;
+  line-height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  border-radius: 5px; }
 
 .new-comment-container {
+  width: 100%; }
+
+.new-comment-block {
+  width: 85%;
+  margin: 0 auto;
+  position: relative; }
+
+.new-comment {
+  width: 75%;
+  position: absolute;
+  left: 0; }
+
+.new-comment-title {
   width: 100%;
-  height: 800px;
-  border: 1px solid; }
+  height: 50px; }
+  .new-comment-title span {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #4e4e4e; }
+
+.new-comment-li {
+  width: 100%;
+  font-size: 0;
+  padding-top: 20px;
+  border-bottom: 1px solid #d5d5d5; }
+
+.new-comment-li-leftHead {
+  width: 6%;
+  height: 90px;
+  display: inline-block;
+  vertical-align: top; }
+  .new-comment-li-leftHead img {
+    width: 85%;
+    height: 55%;
+    border-radius: 50%; }
+
+.new-comment-li-content {
+  width: 94%;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px; }
+
+.new-comment-li-content-name {
+  width: 100%;
+  height: 30px; }
+
+.new-comment-li-content-name-text {
+  color: #000;
+  font-weight: bold; }
+
+.new-comment-li-content-name-time {
+  color: #c0c0c0;
+  font-size: 14px;
+  padding-left: 10px; }
+
+.new-comment-li-content-txt {
+  width: 100%;
+  font-size: 15px;
+  font-family: '微软雅黑';
+  line-height: 25px; }
+
+.scroll-top {
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  right: 2%;
+  bottom: 30px;
+  z-index: 9999;
+  background: url("./img/scrollTop.png") center no-repeat;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  display: none; }
+  .scroll-top:hover {
+    cursor: pointer; }
 
 /*# sourceMappingURL=video.css.map */
