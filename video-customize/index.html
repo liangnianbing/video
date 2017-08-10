@@ -50,9 +50,6 @@
         并且能讲发送文字展示在评论区（要有评论区）最多展示二十条，剩余滚动条下拉显示;
  3.剩余功能，有什么想到了再加吧;
 -->
-
-
-
 <!--模拟登陆状态条-->
 <div class="login-container">我是登陆条</div>
 <!--视屏容器-->
@@ -104,9 +101,6 @@
 
             </div>
         </div>
-
-
-
         <!--推荐视屏/弹幕评论----容器-->
         <div class="recommendVideo-container">
             <div class="recommendVideo-container-container">
@@ -149,9 +143,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <!--下方的分享点赞、弹幕发送框什么的-->
         <div class="barrage-toolbar-container">
 
@@ -165,7 +156,7 @@
                 <div class="barrage-toolbar-left-setsize" id="barrage-toolbar-left-setsize">
                     <span id="barrage-toolbar-left-setsize-shezhi">设置</span>
                     <div class="barrage-toolbar-left-setsize-panel">
-                        <div class="barrage-toolbar-left-setsize-panel-div0 barrage-toolbar-left-setsize-panel-currency-border barrage-toolbar-left-setsize-panel-currency">
+                        <div id="barrageColorChoice" class="barrage-toolbar-left-setsize-panel-div0 barrage-toolbar-left-setsize-panel-currency-border barrage-toolbar-left-setsize-panel-currency">
                             <div class="barrage-toolbar-left-setsize-panel-div0-title">发送设置</div>
                             <div class="barrage-toolbar-left-setsize-panel-div0-color">
                                 <ul>
@@ -196,6 +187,7 @@
                     </div>
                 </div>
                 <div class="barrage-toolbar-left-input">
+                    <div id="barrageClick" class="barrage-toolbar-left-input-button">发送</div>
                     <input name="tucao" id="tucao" class="barrage-toolbar-left-input-tucao" type="text" maxlength="10" placeholder="狠狠地吐槽吧！">
                 </div>
             </div>
@@ -231,13 +223,9 @@
             <!--右上角的关闭叉叉标志-->
             <div class="video-bgcolor-advertisement-close"></div>
         </div>
+
     </div>
 </div>
-
-
-
-
-
 <!--发表评论   表单-->
 <div class="god-comment-container">
     <div class="god-comment-block">
@@ -257,10 +245,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 <!--评论显示区域-->
 <div class="new-comment-container">
     <div class="new-comment-block">
@@ -353,29 +337,21 @@
         </div>
     </div>
 </div>
-
-
-
-
 <!--全局元素-->
 <!--切换清晰度的时候一个缓冲遮罩层-->
 <div class="toggle-resolution-mask">
     <div class="toggle-resolution-mask-image"></div>
 </div>
-
 <!--当滑动之后，视屏加载到右下角-->
 <div class="global-video-container">
     <video id="myvideo2" src="./shiping/Vue.ogg">
 
     </video>
 </div>
-
-
 <!--返回顶部-->
 <div class="scroll-top">
 
 </div>
-
 </body>
 <script>
     var recommendVideo = function(data){
@@ -449,7 +425,6 @@
         }
     }
 </script>
-
 <script src="./json/RecommendVideo.js"></script>
 <script src="./json/commentData.js"></script>
 </html>

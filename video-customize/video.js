@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2017\7\13 0013.
- */
 $(function(){
     //视屏下方的控制条所有操作全部在这个函数中；
     (function(){
@@ -22,7 +19,6 @@ $(function(){
                     //得到已播放的秒数
                     var already_total = Math.round(myvideo.currentTime);//得到已播放的总秒数
                     if(myvideo.ended){
-                        console.log("视屏播放完毕");
                         playOrpause();
                     }else{
                         var already_minutes = parseInt(already_total/60);//得到已播放的大概分钟数
@@ -344,6 +340,12 @@ $(function(){
                     $('.barrage-toolbar-switch-btn').css({
                         'background-color':'#333'
                     });
+                    $('.video-toolvar-danmu').css({
+                        'display':'none'
+                    });
+                    $('.barrage-toolbar-left-input-button').css({
+                        'display':'none'
+                    });
                     _control_switch = false;
                 }else{
                     $('.barrage-toolbar-switch-btn-control').css({
@@ -351,6 +353,12 @@ $(function(){
                     });
                     $('.barrage-toolbar-switch-btn').css({
                         'background-color':'#449f1c'
+                    });
+                    $('.video-toolvar-danmu').css({
+                        'display':'block'
+                    });
+                    $('.barrage-toolbar-left-input-button').css({
+                        'display':'block'
                     });
                     _control_switch = true;
                 }
@@ -378,6 +386,21 @@ $(function(){
 
             }
         });
+
+        //弹幕颜色选择
+        $('#barrageColorChoice').on({
+            'click':function(ev){
+                var _barrage_color = ev.target.id;
+                $('.video-toolvar-danmu').css({
+                    'color':'#' + _barrage_color
+                });
+            }
+        });
+
+
+
+
+
 
 
         //setImgAndColor();参数1：父元素，参数2：原本的图片名称，参数3：hover要替换的文件名称
@@ -588,12 +611,97 @@ $(function(){
     });
 
 
+    //弹幕
+    (function(){
+
+        // var tucao = document.getElementById('tucao');
+        // var tucaoAfter = window.getComputedStyle(tucao,':after').content;
+        // console.log(tucaoAfter);
+        //这是获取一个元素的伪类，可以修改content和style，但是添加不了事件;
+        //弹幕
+        //当input获得焦点的时候将警告样式改回去
+
+        var inputObj = document.getElementsByClassName('barrage-toolbar-left-input-tucao')[0];
+        inputObj.addEventListener('focus',function(){
+            inputObj.style.border = '2px solid #252528';
+            inputObj.setAttribute('placeholder','狠狠地吐槽吧！');
+        });
+
+        //发送按钮的点击事件
+        var barrageclick = document.getElementsByClassName('barrage-toolbar-left-input-button')[0];
+        var videoContainer = document.getElementsByClassName('video-container')[0];
+
+        var barrageArr = [150,200,250,300,350,400,450,500,550,470];
+        barrageclick.addEventListener('click',function(ev){
+            var inputObj = document.getElementsByClassName('barrage-toolbar-left-input-tucao')[0];
+            var barrageTime = null;
+            if(inputObj.value == ''){
+                inputObj.style.border = '2px solid #ff7835';
+                inputObj.setAttribute('placeholder','请输入内容！');
+            }else{
+                //创建一个承载弹幕评论的div
+                var barrageRandom = parseInt((Math.random())*10);
+                var video_toolvar_danmu = document.createElement('div');
+                video_toolvar_danmu.setAttribute('class','video-toolvar-danmu');
+                var video_toolvar_danmu_txt = document.createTextNode(inputObj.value);
+                video_toolvar_danmu.appendChild(video_toolvar_danmu_txt);
+                video_toolvar_danmu.style.bottom = barrageArr[barrageRandom]+'px';
+
+                videoContainer.appendChild(video_toolvar_danmu);
+
+                //同时还要将弹幕文字放到弹幕列表里去；
+                var barrageListObj = document.getElementsByClassName('recommendVideo-tab-list1-tbody')[0];
+                var _tr = document.createElement('tr');
+                var _name_td = document.createElement('td');
+                var _barrage_td = document.createElement('td');
+                var _time_td = document.createElement('td');
+
+                var _name_td_txt = document.createTextNode('天下第一');
+                _name_td.setAttribute('class','recommendVideo-tab-list1-tbody-tr-td');
+                var _barrage_td_txt = document.createTextNode(inputObj.value);
+                var date = new Date();
+                var __hour = date.getHours();
+                var __minute = date.getMinutes();
+                var _time_td_txt = document.createTextNode(__hour + ':' + __minute);
+
+
+                _name_td.appendChild(_name_td_txt);
+                _barrage_td.appendChild(_barrage_td_txt);
+                _time_td.appendChild(_time_td_txt);
+
+                _tr.appendChild(_name_td);
+                _tr.appendChild(_barrage_td);
+                _tr.appendChild(_time_td);
+
+                barrageListObj.appendChild(_tr);
+                var commentNumber = $('.recommendVideo-tab-list1-tbody tr');
+                $('.recommendVideo-audienceNumbei-barrage').text(commentNumber.length);
 
 
 
 
 
+                inputObj.value = '';
+                var index = 1;
+                barrageTime = setInterval(function(){
 
+                    if(index > 1100){
+                        clearInterval(barrageTime);
+                        console.log('定时器清除成功' + index);
+                        videoContainer.removeChild(video_toolvar_danmu);
+                        index = null;
+                    }else{
+                        video_toolvar_danmu.style.left = index+'px';
+                        index++;
+                    }
+
+                },30);
+
+
+
+            }
+        })
+    })();
 
 
 
@@ -601,8 +709,5 @@ $(function(){
 
 
 });
-
-
-
 
 
