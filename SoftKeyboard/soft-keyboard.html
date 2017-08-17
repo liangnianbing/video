@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="#FE9345" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="format-detection" content="telphone=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>请输入手机号.....</title>
+    <!--初始化-->
+    <style>
+        video::-webkit-media-controls-enclosure { /*禁用播放器控制栏的样式*/
+            display: none !important;
+        }
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+            resize:none;
+        }
+
+        body {
+            background: #fff;
+            color: #555;
+            font-size: 14px;
+            font-family: '微软雅黑';
+        }
+
+        td, th, caption {
+            font-size: 14px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: normal;
+            font-size: 100%;
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        img {
+            border: none;
+        }
+
+        ol, ul, li {
+            list-style: none;
+        }
+
+        input, textarea, select, button {
+            font: 14px Verdana, Helvetica, Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        textarea {
+            resize: none;
+            outline: none;
+        }
+    </style>
+    <!--CDN-->
+    <!--JQ-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--在下面接着引入-->
+    <style>
+        .border-color{
+            border-bottom:1px solid #313131;
+        }
+        .right-color{
+            border-right:1px solid #313131;
+        }
+        .input{
+            width:300px;
+            height:40px;
+            display:block;
+            margin:20px auto;
+            padding-left:15px;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+            border:1px solid #c0c0c0;
+        }
+
+
+        .keyboard{
+            width:100%;
+            background-color: #c0c0c0;
+            position:fixed;
+            bottom:0px;
+            left:0px;
+            -webkit-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            -ms-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            transition: all 0.4s;
+        }
+        .keyboard-top{
+            width:100%;
+            height:78%;
+            position: relative;
+            top:0px;
+            left:0px;
+            background-color: #39f;
+            font-size:0;
+        }
+
+        .keyboard-top-lt{
+            width:15%;
+            height:100%;
+            background-color: #c0c0c0;
+            display:inline-block;
+            vertical-align: top;
+        }
+        .keyboard-top-middle{
+            width:70%;
+            height:100%;
+            background-color: #fff;
+            display:inline-block;
+            vertical-align: top;
+        }
+        .keyboard-top-rt{
+            width:15%;
+            height:100%;
+            background-color: aliceblue;
+            display:inline-block;
+            vertical-align: top;
+        }
+        .keyboard-top-middle-ul{
+            font-size:0;
+            padding-left:4%;
+        }
+        .keyboard-top-middle-ul li{
+            font-size:30px;
+            display:inline-block;
+            vertical-align: top;
+            text-align: center;
+            line-height: 120px;
+            color:#000;
+            width:32%;
+            height:120px;
+            border:1px solid #c0c0c0;
+        }
+        .keyboard-bottom-ul li,.keyboard-top-rt-ul li,.keyboard-top-lt-ul li:hover,.keyboard-top-middle-ul li:hover{
+            cursor: pointer;
+        }
+
+        .keyboard-top-rt-ul li,.keyboard-top-lt-ul li{
+            width:100%;
+            height:90px;
+            text-align: center;
+            line-height: 90px;
+            font-size:30px;
+            color:#000;
+        }
+        .keyboard-bottom{
+            width:100%;
+            height:22%;
+            position: relative;
+            bottom:0px;
+            left:0px;
+            background-color: #fff;
+            font-szie:0;
+
+        }
+        .keyboard-bottom-ul{
+            font-size:0px;
+        }
+        .keyboard-bottom-ul li{
+            width:20%;
+            height:100px;
+            display:inline-block;
+            vertical-align: top;
+            font-size:32px;
+            text-align: center;
+            line-height:100px;
+        }
+
+        @media screen and (max-width: 414px){
+            body{
+                background-color: #fff;
+            }
+            .keyboard-top-middle-ul li{
+                height:95px;
+                line-height: 95px;
+            }
+            .keyboard-top-rt-ul li,.keyboard-top-lt-ul li{
+                width:100%;
+                height:70px;
+                text-align: center;
+                line-height: 70px;
+                font-size:25px;
+                color:#000;
+            }
+            .keyboard-bottom-ul li{
+                width:20%;
+                height:90px;
+                display:inline-block;
+                vertical-align: top;
+                font-size:26px;
+                text-align: center;
+                line-height:80px;
+                border-top:1px solid #555555;
+            }
+        }
+        @media screen and (max-width:375px){
+            .keyboard-top-middle-ul li{
+                height:90px;
+                line-height: 90px;
+            }
+            .keyboard-top-rt-ul li,.keyboard-top-lt-ul li{
+                width:100%;
+                height:65px;
+                text-align: center;
+                line-height: 65px;
+                font-size:23px;
+                color:#000;
+            }
+            .keyboard-bottom-ul li{
+                width:20%;
+                height:80px;
+                display:inline-block;
+                vertical-align: top;
+                font-size:22px;
+                text-align: center;
+                line-height:80px;
+                border-top:1px solid #555555;
+            }
+
+        }
+        @media screen and (max-width:320px){
+            .keyboard-top-middle-ul li{
+                height:75px;
+                line-height: 75px;
+            }
+            .keyboard-top-rt-ul li,.keyboard-top-lt-ul li{
+                width:100%;
+                height:55px;
+                text-align: center;
+                line-height: 55px;
+                font-size:18px;
+                color:#000;
+            }
+            .keyboard-bottom-ul li{
+                width:20%;
+                height:60px;
+                display:inline-block;
+                vertical-align: top;
+                font-size:20px;
+                text-align: center;
+                line-height:60px;
+                border-top:1px solid #555555;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <input class="input" id="phone" name="phone" type="text" maxlength="11" placeholder="可以输入数字、字符" />
+
+    <div class="keyboard">
+        <div class="keyboard-top">
+            <div class="keyboard-top-lt">
+                <ul class="keyboard-top-lt-ul">
+                    <li class="border-color">%</li>
+                    <li class="border-color">-</li>
+                    <li class="border-color">+</li>
+                    <li>*</li>
+                </ul>
+            </div>
+            <div class="keyboard-top-middle">
+                <ul class="keyboard-top-middle-ul">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+            </div>
+            <div class="keyboard-top-rt">
+                <ul class="keyboard-top-rt-ul">
+                    <li class="border-color">隐藏</li>
+                    <li class="border-color">回删</li>
+                    <li class="border-color">.</li>
+                    <li>@</li>
+                </ul>
+            </div>
+        </div>
+        <div class="keyboard-bottom">
+            <ul class="keyboard-bottom-ul">
+                <li>符</li>
+                <li>返回</li>
+                <li>0</li>
+                <li>空格</li>
+                <li>完成</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        Array.prototype.removeLast = function(arr){
+            var _newsArr = [];
+            for(var i = 0;i < arr.length-1;i++){
+                _newsArr.push(arr[i]);
+            }
+            return _newsArr;
+        };
+        Array.prototype.ArrtoString = function(arr){
+            var _string = '';
+            for(var i = 0;i < arr.length;i++){
+                _string += arr[i];
+            }
+            return _string;
+        };
+
+        $(function(){
+
+            $('#phone').on({
+                'focus':function(){
+                    $('#phone').css({
+                        'border':'1px solid #39f',
+                        'box-shadow':'1px 1px 10px #39f'
+                    });
+                },
+                'blur':function(){
+                    $('#phone').css({
+                        'border':'',
+                        'box-shadow':''
+                    });
+                }
+            });
+
+            //设置键盘的高度
+            $('.keyboard').height(($(document).height())/2);
+
+            //li点击的时候的样式
+            $('.keyboard-top-middle-ul,.keyboard-top-lt-ul,.keyboard-top-rt-ul,.keyboard-bottom-ul').on({
+                'mousedown':function(ev){
+                    $(ev.target).css({
+                        'background-color':'#d8d8d8',
+                        'box-shadow':'5px 5px 5px #999 inset'
+                    });
+                },
+                'mouseup':function(ev){
+                    $(ev.target).css({
+                        'background-color':'',
+                        'box-shadow':''
+                    });
+                },
+                'mouseout':function(ev){
+                    $(ev.target).css({
+                        'background-color':'',
+                        'box-shadow':''
+                    });
+                }
+            });
+
+            function inputValReg(){
+            //设置input输入规则
+                var _input = $('#phone');
+                var reg = new RegExp(/^\d{0,11}$/ig);
+                if(reg.test(_input.val())){
+                    return;
+                }else{
+                    _input.val('');
+                }
+            }
+            $('#phone').on({
+                'input':function(){
+                    inputValReg();
+                },
+                'focus':function(){
+                    $('.keyboard').css({
+                        'bottom':0,
+                        'opacity':'1'
+                    });
+
+                }
+            });
+
+
+
+
+
+
+
+            (function(){
+                var __input = $('#phone');
+                var __inputValArr = [];
+                var __keyboard_hiddenOrshow = true;
+
+                $('.keyboard').on({
+                    'click':function(ev){
+                        var _evTxt = ev.target.innerText;
+                        if(_evTxt === '1' || _evTxt === '2' || _evTxt === '3' || _evTxt === '4' || _evTxt === '5' || _evTxt === '6' || _evTxt === '7' || _evTxt === '8' || _evTxt === '9' || _evTxt === '0' || _evTxt === '%' || _evTxt === '+' || _evTxt === '-' || _evTxt === '*' || _evTxt === '.' || _evTxt === '@'){
+                            __input.val(__input.val() + ev.target.innerText);
+                            __inputValArr.push(ev.target.innerText);
+                        }else if(_evTxt === '返回'){
+                            alert('没有别的页面了，所以返回不了');
+                        }else if(_evTxt === '回删'){
+                            var news__inputValArr = __inputValArr.removeLast(__inputValArr);
+                            __inputValArr = news__inputValArr;
+                            var string__inputValArr = news__inputValArr.ArrtoString(news__inputValArr);
+                            __input.val(string__inputValArr);
+                        }else if(_evTxt === '隐藏'){
+                            if(__keyboard_hiddenOrshow){
+                                $('.keyboard').css({
+                                    'bottom':-($(document).height()/2),
+                                    'opacity':'0'
+                                });
+                            };
+                        }
+                    }
+                });
+            })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+</body>
+</html>
